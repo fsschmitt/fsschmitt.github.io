@@ -1,5 +1,18 @@
-// Typed.js about-me
 document.addEventListener('DOMContentLoaded', function () {
+
+    /* Google Analytics */
+    var links = document.getElementsByTagName("a");
+    for (var i = 0; i < links.length; i++) {
+        links[i].onclick = function () {
+            var url = this.href;
+            ga('send', 'event', 'outbound', 'click', url, {
+                'transport': 'beacon',
+                'hitCallback': function () {}
+            });
+        }
+    }
+
+    /* Typed Setup */
     Typed.new('.welcome-typed', {
         stringsElement: document.getElementById('typed-strings'),
         loop: true,
