@@ -1,0 +1,99 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>The real cost of an iPhone</title>
+    <meta name="description" content="Calculate the real cost of an iPhone based on the minimum wage of your country.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <!-- OpenGraph -->
+    <meta property="og:title" content="The real cost of an iPhone" />
+    <meta property="og:description" content="Calculate the real cost of an iPhone based on the minimum wage of your country." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="http://ia.media-imdb.com/images/rock.jpg" />
+
+    <link rel="stylesheet" href="css/normalize.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/overview.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+    <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
+</head>
+<body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div class="main-container">
+            <div class="main wrapper clearfix">
+                <section class="section section-hero">
+                    <div class="section-content centered">
+                        <h1 class="typography-headline-elevated">The real cost of an iPhone</h1>
+                        <p class="typography-intro">Number of working hours required to purchase an iPhone on minimum wage.</p>
+                    </div>
+                </section>
+                <section class="section section-search">
+                    <input id="countries" placeholder="Enter a country's name..." />
+                </section>
+                <section class="section section-iphone">
+                    <div id="iphone-information" class="row align-items-center">
+
+                    </div>
+                </section>
+            </div> <!-- #main -->
+        </div> <!-- #main-container -->
+
+        <div class="footer-container">
+            <footer class="wrapper">
+                <p><strong>Disclaimers:</strong></p>
+                <p>- This website is for informational purposes and it should not be considered as anything else.</p>
+                <p>- iPhone® is a trademark of Apple Inc.</p>
+                <p>- This website does not belong or have been built in any cooperation with Apple.</p>
+                <p>- All iPhone and Apple images used on this micro website belong to Apple.</p>
+                <p>- All prices ($USD) compared by the values announced on Apple US website.</p>
+                <p>- Tax is not being considered for this illustration.</p>
+                <p>- Minimum wage information gathered from <a href="https://en.wikipedia.org/wiki/List_of_minimum_wages_by_country" target="_blank">Wikipedia</a>.</p>
+                <div class="logo-container"><a href="http://www.felipeschmitt.com" target="_blank"><img class="logo-img" src="img/logo.png"></a></div>
+            </footer>
+        </div>
+
+
+        <script id="iphone-template" type="text/x-handlebars-template">
+            {{#if notFound}}
+            <div class="col-xs-12 col-md-12 col-lg-12 centered">Minimum Wage information not found for this country.</div>
+            {{else}}
+            <div class="col-xs-12 col-md-12 col-lg-12 centered"></div>
+            {{#each iphoneInfo}}
+            <div class="col-xs-12 col-md-6 col-lg-4 iphone-card">
+                <img class="iphone-img" src="{{imgsource}}">
+                <p class="iphone-name">{{name}}</p>
+                <p class="iphone-info">Price: ${{cost}}</p>
+                <p class="iphone-info">Amount of hours: {{hours}} hours</p>
+                <p class="iphone-info">8-hour work days: {{days}} days</p>
+            </div>
+            {{/each}}
+            {{/if}}
+        </script>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+        <script src="js/vendor/jquery.easy-autocomplete.min.js"></script>
+
+        <script src="js/main.js"></script>
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+                function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+        </script>
+    </body>
+    </html>
