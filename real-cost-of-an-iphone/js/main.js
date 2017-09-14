@@ -1794,6 +1794,24 @@ var minimumWage = {
 	}
 };
 
+var updateInformation = function(selectedItemValue) {
+	if(selectedItemValue && selectedItemValue.HourlyUSD) {
+		context.notFound = false;
+		var perHour = selectedItemValue.HourlyUSD;
+		for (var i = context.iphoneInfo.length - 1; i >= 0; i--) {
+			var hours = context.iphoneInfo[i].cost / perHour;
+			context.iphoneInfo[i].hours = parseInt(hours).toLocaleString();
+			context.iphoneInfo[i].days = (hours / 8).toFixed(1);
+		}
+	}
+	else {
+		context.notFound = true;
+	}
+	// Pass our data to the template
+	var theCompiledHtml = theTemplate(context);
+	$('#iphone-information').html(theCompiledHtml);
+};
+
 var options = {
 
 	//url: "resources/countries.json",
@@ -1807,22 +1825,7 @@ var options = {
 		},
 		onSelectItemEvent: function() {
 			selectedItemValue = minimumWage[$("#countries").getSelectedItemData().name];
-
-			if(selectedItemValue && selectedItemValue.HourlyUSD) {
-				context.notFound = false;
-				var perHour = selectedItemValue.HourlyUSD;
-				for (var i = context.iphoneInfo.length - 1; i >= 0; i--) {
-					var hours = context.iphoneInfo[i].cost / perHour;
-					context.iphoneInfo[i].hours = parseInt(hours).toLocaleString();
-					context.iphoneInfo[i].days = (hours / 8).toFixed(1);
-				}
-			}
-			else {
-				context.notFound = true;
-			}
-			// Pass our data to the template
-			var theCompiledHtml = theTemplate(context);
-			$('#iphone-information').html(theCompiledHtml);
+			updateInformation(selectedItemValue);
 		}
 
 	},
@@ -1848,4 +1851,12 @@ var context = {
 	{ name: 'iPhone SE', cost: 349, hours: 0, days: 0, imgsource: 'img/iphonese-select.png'}
 	]
 };
+
+var searchParams = new URLSearchParams(window.location.search); //?anything=123
+var preselectedCountry = searchParams.get("country");
+if(preselectedCountry) {
+	$("#countries").val(preselectedCountry);
+	updateInformation(minimumWage[preselectedCountry]);
+}
+
 $("#countries").easyAutocomplete(options);
